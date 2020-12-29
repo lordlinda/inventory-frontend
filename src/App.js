@@ -1,23 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import StockEventsTable from "./components/StockEventsTable";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import AddProduct from "./components/AddProduct";
+import "semantic-ui-css/semantic.min.css";
+import { Container } from "semantic-ui-react";
+import Product from "./components/Product";
+import Navbar from "./components/Navbar";
 function App() {
+  const [products, setProducts] = useState([]);
+  const [stockEvents, setStockEvents] = useState([]);
+
+  const fetchStockEvents = async () => {
+    const res = await axios.get("http://localhost:1337/stockevents");
+    setStockEvents(res.data);
+  };
+  const fetchProducts = async () => {
+    const res = await axios.get("http://localhost:1337/drugs");
+    setProducts(res.data);
+  };
+
+  useEffect(() => {
+    fetchStockEvents();
+    fetchProducts();
+  }, []);
+  const addProduct = (product) => {
+    setProducts([product, ...products]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div className="App">
+        <Router>
+          <Navbar />
+          <br />
+          <br />
+          <Container>
+            <Switch>
+              <Route path="/product/:name">
+                <Product products={products} />
+              </Route>
+              <Route path="/">
+                <StockEventsTable
+                  products={products}
+                  stockEvents={stockEvents}
+                  addProduct={addProduct}
+                />
+              </Route>
+            </Switch>
+          </Container>
+        </Router>
+      </div>
     </div>
   );
 }
