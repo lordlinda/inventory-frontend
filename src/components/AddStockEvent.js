@@ -22,7 +22,7 @@ function AddStockEvent({ product, addStockEvent }) {
       };
       console.log(data);
       await axios
-        .post("http://localhost:1337/stockevents", data)
+        .post("https://strapi-inventory.herokuapp.com/stockevents", data)
         .then((res) => {
           addStockEvent(res.data);
         });

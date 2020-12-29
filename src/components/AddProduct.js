@@ -11,7 +11,7 @@ function AddProduct(props) {
         name,
         description,
       };
-      await axios.post("http://localhost:1337/drugs", data).then((res) => {
+      await axios.post("https://strapi-inventory.herokuapp.com/drugs", data).then((res) => {
         props.addProduct(res.data);
       });
     }

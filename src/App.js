@@ -13,11 +13,13 @@ function App() {
   const [stockEvents, setStockEvents] = useState([]);
 
   const fetchStockEvents = async () => {
-    const res = await axios.get("http://localhost:1337/stockevents");
+    const res = await axios.get(
+      "https://strapi-inventory.herokuapp.com/stockevents"
+    );
     setStockEvents(res.data);
   };
   const fetchProducts = async () => {
-    const res = await axios.get("http://localhost:1337/drugs");
+    const res = await axios.get("https://strapi-inventory.herokuapp.com/drugs");
     setProducts(res.data);
   };
 

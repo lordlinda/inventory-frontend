@@ -10,7 +10,9 @@ function Product({ products }) {
   const [stockEvents, setStockEvents] = useState([]);
   const [open, setOpen] = useState(false);
   const fetchStockEvents = async () => {
-    const res = await axios.get("http://localhost:1337/stockevents");
+    const res = await axios.get(
+      "https://strapi-inventory.herokuapp.com/stockevents"
+    );
     setStockEvents(res.data);
   };
   useEffect(() => {
