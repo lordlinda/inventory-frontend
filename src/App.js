@@ -18,6 +18,7 @@ function App() {
     );
     setStockEvents(res.data);
   };
+
   const fetchProducts = async () => {
     const res = await axios.get("https://strapi-inventory.herokuapp.com/drugs");
     setProducts(res.data);
@@ -30,7 +31,7 @@ function App() {
   const addProduct = (product) => {
     setProducts([product, ...products]);
   };
-
+  console.log(products);
   return (
     <div>
       <div className="App">

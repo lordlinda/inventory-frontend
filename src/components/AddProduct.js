@@ -11,9 +11,12 @@ function AddProduct(props) {
         name,
         description,
       };
-      await axios.post("https://strapi-inventory.herokuapp.com/drugs", data).then((res) => {
-        props.addProduct(res.data);
-      });
+      console.log(data);
+      await axios
+        .post("https://strapi-inventory.herokuapp.com/drugs", data)
+        .then((res) => {
+          props.addProduct(res.data);
+        });
     }
   };
   return (

@@ -18,9 +18,8 @@ function AddStockEvent({ product, addStockEvent }) {
       const data = {
         qty: type === "add" ? +qty : -qty,
         type,
-        drug: parseInt(product[0].id),
+        drug: product[0]._id,
       };
-      console.log(data);
       await axios
         .post("https://strapi-inventory.herokuapp.com/stockevents", data)
         .then((res) => {

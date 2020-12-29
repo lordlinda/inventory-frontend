@@ -9,6 +9,7 @@ function StockEventsTable(props) {
   const addProduct = (product) => {
     props.addProduct(product);
   };
+  console.log(props);
   return (
     <div className="StockEventTable">
       <div>
@@ -29,7 +30,7 @@ function StockEventsTable(props) {
         </Modal>
         <div className="ui cards">
           {products.map((product) => (
-            <div className="ui card" key={product.id}>
+            <div className="ui card" key={product._id}>
               <div className="content">
                 <NavLink to={`/product/${product.name}`}>
                   <div className="header">{product.name}</div>
@@ -37,7 +38,7 @@ function StockEventsTable(props) {
 
                 <div className="meta">
                   {stockEvents
-                    .filter((event) => event.drug.id === product.id)
+                    .filter((event) => event.drug?._id === product._id)
                     .reduce((acc, curr) => acc + curr.qty, 0)}{" "}
                   stock left
                 </div>

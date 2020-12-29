@@ -45,7 +45,7 @@ function Product({ products }) {
       <div className="ui cards">
         <h4>Stock Details</h4>
         <StockDetail
-          stockEvents={stockEvents.filter((e) => e.drug.name === name)}
+          stockEvents={stockEvents.filter((e) => e.drug?.name === name)}
         />
       </div>
     </div>
