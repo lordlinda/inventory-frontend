@@ -7,7 +7,9 @@ function StockDetail({ stockEvents }) {
         return (
           <div className="content" key={e._id}>
             <div className="meta">QTY: {e.qty}</div>
-            <div className="description">{`${e.type}ed stock`}</div>
+            <div className="description">
+              {e.type === "add" ? "added stock" : "removed stock"}
+            </div>
           </div>
         );
       })}

@@ -19,7 +19,6 @@ function Product({ products }) {
     fetchStockEvents();
   }, []);
   const addEvent = (event) => {
-    console.log(event);
     setStockEvents([event, ...stockEvents]);
   };
   return (

@@ -1,20 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Icon, Button, Modal } from "semantic-ui-react";
 import AddProduct from "./AddProduct";
-
+import axios from "axios";
 function StockEventsTable(props) {
-  const { products, stockEvents } = props;
+  const [stockEvents, setStockEvents] = useState([]);
+  const fetchStockEvents = async () => {
+    const res = await axios.get(
+      "https://strapi-inventory.herokuapp.com/stockevents"
+    );
+    setStockEvents(res.data);
+  };
+  const { products } = props;
   const [open, setOpen] = useState(false);
   const addProduct = (product) => {
     props.addProduct(product);
   };
-  console.log(props);
+  useEffect(() => {
+    fetchStockEvents();
+  }, []);
   return (
     <div className="StockEventTable">
       <div>
         <h2>Musawo's Drugstore Inventory</h2>
-        <a onClick={() => setOpen(!open)}>
+        <a onClick={() => setOpen(!open)} href="#">
           <Icon name="plus" />
           Add New Product
         </a>
