@@ -21,6 +21,9 @@ function Product({ products }) {
   const addEvent = (event) => {
     setStockEvents([event, ...stockEvents]);
   };
+  const closeModal = () => {
+    setOpen(false);
+  };
   return (
     <div>
       <h2>{name}</h2>
@@ -33,13 +36,9 @@ function Product({ products }) {
           <AddStockEvent
             product={products.filter((product) => product.name === name)}
             addStockEvent={addEvent}
+            closeModal={closeModal}
           />
         </Modal.Content>
-        <Modal.Actions>
-          <Button positive onClick={() => setOpen(false)}>
-            close
-          </Button>
-        </Modal.Actions>
       </Modal>
       <div className="ui cards">
         <h4>Stock Details</h4>

@@ -15,6 +15,7 @@ function StockEventsTable(props) {
   const [open, setOpen] = useState(false);
   const addProduct = (product) => {
     props.addProduct(product);
+    setOpen(false);
   };
   useEffect(() => {
     fetchStockEvents();
@@ -31,11 +32,6 @@ function StockEventsTable(props) {
           <Modal.Content>
             <AddProduct addProduct={addProduct} />
           </Modal.Content>
-          <Modal.Actions>
-            <Button positive onClick={() => setOpen(false)}>
-              close
-            </Button>
-          </Modal.Actions>
         </Modal>
         <div className="ui cards">
           {products.map((product) => (

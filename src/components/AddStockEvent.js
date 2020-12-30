@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-function AddStockEvent({ product, addStockEvent }) {
+function AddStockEvent({ product, addStockEvent, closeModal }) {
   const [data, setData] = useState({
     qty: "",
     type: "",
@@ -25,6 +25,7 @@ function AddStockEvent({ product, addStockEvent }) {
         .then((res) => {
           addStockEvent(res.data);
         });
+      closeModal();
     }
   };
   return (
